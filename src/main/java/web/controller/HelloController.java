@@ -1,30 +1,27 @@
 package web.controller;
 
-
-import hiber.models.Car;
+import hiber.models.User;
+import hiber.service.ServiceUserInterface;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.sql.SQLException;
 import java.util.List;
 
 @Controller
 //@RestController
-@RequestMapping(value = "/", method = RequestMethod.GET)
+//@RequestMapping(value = "/", method = RequestMethod.GET)
 public class HelloController {
 
-//    @Autowired
-//    private final ImpCarDAO impCarDAO;
+    @Autowired
+    private ServiceUserInterface serviceUserInterface;
 
-    @GetMapping()
+
+    @GetMapping("/")
     public String printWelcome(ModelMap model) {
-        List<String> messages = new ArrayList<>();
-        messages.add("Hello!");
-        messages.add("I'm Spring MVC application");
-        messages.add("5.2.0 version by sep'19 ");
-        model.addAttribute("messages", messages);
+        model.addAttribute("allUsers", serviceUserInterface.getAllUsersList());
         return "index";
     }
 
@@ -37,28 +34,41 @@ public class HelloController {
 //    return "calculator";
 //    }
 
-    @GetMapping(value = "cars")
-    public String getCars(ModelMap model) {
-        Car car1 = new Car();
-        List<Car> list = car1.creatingListCars();
-        model.addAttribute("carPages", list);
-        return "cars";
+//    @RequestMapping(value = "users/{userName}", method = RequestMethod.POST)
+    @PostMapping("/adduser")
+    public String saveNewUser(@RequestParam String userName,
+                              @RequestParam (required = false) String userSurname,
+                              @RequestParam (required = false) Integer age, ModelMap model) {
+        User user = new User(userName, userSurname, age);
+
+        model.addAttribute("user", user);
+        serviceUserInterface.addUser(user);
+
+        return "confirmation";
     }
 
-    @GetMapping("/cars/{count}")
-    public String indexId(@RequestParam("count") int count, Model model) {
-        Car car = new Car();
-        model.addAttribute("carResultPage", car.getListbyID(count));
-        return "resultList";
+    @GetMapping("/adduser")
+    public String savePage() {
+        return "adduser";
     }
 
-    @GetMapping(value = "/quantityOfCars")
-    public String getQuantityOfCars(Model model) {
-        int quantityOfCars;
-        Car car1 = new Car();
-        quantityOfCars = car1.creatingListCars().size();
-        model.addAttribute("quantity", quantityOfCars);
-        return "quantityOfCars";
-
-    }
+//    @PostMapping("/")
+//    public String saveUser(@ModelAttribute("user"), ModelMap map){}
+//
+//    @GetMapping("/cars/{count}")
+//    public String indexId(@RequestParam("count") int count, Model model) {
+//        Car car = new Car();
+//        model.addAttribute("carResultPage", car.getListbyID(count));
+//        return "resultList";
+//    }
+//
+//    @GetMapping(value = "/quantityOfCars")
+//    public String getQuantityOfCars(Model model) {
+//        int quantityOfCars;
+//        Car car1 = new Car();
+//        quantityOfCars = car1.creatingListCars().size();
+//        model.addAttribute("quantity", quantityOfCars);
+//        return "quantityOfCars";
+//
+//    }
 }

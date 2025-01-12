@@ -1,22 +1,82 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/html">
 <html lang="en">
+
 <head>
-    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8"/>
+    <title>Список Машин</title>
+    <link rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="mainstay.css">
+    <link rel="stylesheet" href="http://www.htmlbook.ru/main.css">
 </head>
+
+<style>
+
+    h1 {
+        font-size: 120%;
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        color: blueviolet;
+    }
+
+    h2 {
+        font-size: 100%;
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        color: blue;
+    }
+
+</style>
+
+
+
 <body>
 
+<h1 align="center">Список Всех Пользователей</h1>
+<h2 align="center">Пользователи</h2>
+<div align="center">
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Имя пользователя</th>
+            <th>Фамилия пользователя</th>
+            <th>Возраст пользователя</th>
+        </tr>
+        </thead>
 
-<div>
-    <th:block th:each="msg : ${messages}">
-        <h1 th:text="${msg}"></h1>
-    </th:block>
+        <tbody>
+        <tr th:if="${allUsers.isEmpty()}">
+            <td colspan="3">В базе данных пусто</td>
+        </tr>
+        <tr th:each="user : ${allUsers}">
+            <td><span th:text="${user.getUserName()}"> User  </span> </td>
+            <td><span th:text="${user.getUserSurname()}"> Surname </span></td>
+            <td><span th:text="${user.getAge()}"> Age </span></td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 
-<ui>
-    <li><a href="http://localhost:8080/spring_mvc_war_exploded/cars">Список всех машин</a></li>
-</ui>
+<p></p>
+<p></p>
+
+
+<div class="link" style="text-align: center">
+    <a style="color: darkgoldenrod; font-size: 120%"
+       href="http://localhost:8080/spring_mvc_war_exploded/adduser">Добавить нового пользователя</a>
+</div>
+
+<p></p>
+
+
+<!--<div>-->
+
+<!--<form   th:data="${carPages}"-->
+<!--        th:action="@{http://localhost:8080/spring_mvc_war_exploded/cars/${count}}" method="get">-->
+<!--    <p>Введите количество машин для отображения-->
+<!--        <input type="number" name="count" />-->
+<!--        <input type="submit" value="Выполнть" />-->
+<!--    </p>-->
+<!--</form>-->
+
 
 
 </body>

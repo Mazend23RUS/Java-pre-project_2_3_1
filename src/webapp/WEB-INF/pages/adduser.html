@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:form="http://www.w3.org/1999/xhtml">
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8"/>
+    <link rel="stylesheet" type="text/css"/>
+    .error {
+    color: red;
+    }
+    table {
+    width: 50%;
+    border-collapse: collapse;
+    border-spacing: 0px;
+    }
+    table td {
+    border: 1px solid #565454;
+    padding: 20px;
+    }
+</head>
+
+
+<body>
+
+<h1 align="center">Добавление нового пользователя</h1>
+<h1></h1>
+
+
+<div align="center">
+
+    <p>Добавление нового пользователя</p>
+    <table border="2">
+
+        <form action="#" th:action="@{/adduser}" method="post">
+
+            <tr>
+                <th th:align="left">Name : <input type="text" name="userName" size="10"/></th>
+            </tr>
+            <tr>
+                <th th:align="left">Surname : <input type="text" name="userSurname" size="10"/></th>
+            </tr>
+            <tr>
+                <th th:align="left">Age : <input name="age" size="2"/></th>
+            </tr>
+
+            <th>
+                <input type="submit" value="Добавить Пользователя"/>
+            </th>
+
+        </form>
+    </table>
+</div>
+
+<p></p>
+<p></p>
+<!--<ui>-->
+<!--    <a href="http://localhost:8080/spring_mvc_war_exploded/quantityOfCars">Количество машин в списке</a>-->
+<!--</ui>-->
+
+<p></p>
+<!--<div>-->
+
+<!--<form   th:data="${carPages}"-->
+<!--        th:action="@{http://localhost:8080/spring_mvc_war_exploded/cars/${count}}" method="get">-->
+<!--        <p>Введите количество машин для отображения-->
+<!--        <input type="number" name="count" />-->
+<!--        <input type="submit" value="Выполнть" />-->
+<!--        </p>-->
+<!--</form>-->
+
+
+</body>
+</html>
