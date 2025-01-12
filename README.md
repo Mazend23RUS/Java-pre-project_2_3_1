@@ -1,7 +1,7 @@
-# MySolutionOf2_2_2
+# MySolutionOf2_3_1
 
 Практическая задача
-https://github.com/Mazend23RUS/Java-pre-project_2_2_2.git
+https://github.com/Mazend23RUS/Java-pre-project_2_3_1.git
 
 
 Условие:
