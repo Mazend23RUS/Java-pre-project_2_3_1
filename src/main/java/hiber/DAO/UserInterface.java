@@ -10,4 +10,6 @@ public interface UserInterface {
     List<User> getAllUsers();
 
     void saveUser(User user);
+
+    void deleteUser(Long id);
 }

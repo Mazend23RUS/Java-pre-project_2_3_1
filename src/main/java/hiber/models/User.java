@@ -26,6 +26,7 @@ public class User implements Serializable {
         this.userSurname = userSurname;
         this.userName = userName;
 
+
     }
 
     public long getId() {

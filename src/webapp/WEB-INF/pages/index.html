@@ -1,13 +1,11 @@
-<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/html">
 <html lang="en">
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8"/>
     <title>Список Машин</title>
-    <link rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="mainstay.css">
-    <link rel="stylesheet" href="http://www.htmlbook.ru/main.css">
+<!--    <link rel="stylesheet" type="text/css" />-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 
 <style>
@@ -33,12 +31,17 @@
 <h1 align="center">Список Всех Пользователей</h1>
 <h2 align="center">Пользователи</h2>
 <div align="center">
+    <form th:method="post" th:action="@{/deleteuser/{id}}" >
     <table border="1">
         <thead>
         <tr>
-            <th>Имя пользователя</th>
-            <th>Фамилия пользователя</th>
-            <th>Возраст пользователя</th>
+            <th>id</th>
+            <th>Имя пол-еля</th>
+
+            <th>Фамилия пол-я</th>
+            <th>Возраст пол-я</th>
+            <th>Редактировать пол-я</th>
+            <th>Удалить пол-я</th>
         </tr>
         </thead>
 
@@ -47,13 +50,21 @@
             <td colspan="3">В базе данных пусто</td>
         </tr>
         <tr th:each="user : ${allUsers}">
+            <td><span th:text="${user.getId()}"> id  </span> </td>
             <td><span th:text="${user.getUserName()}"> User  </span> </td>
             <td><span th:text="${user.getUserSurname()}"> Surname </span></td>
             <td><span th:text="${user.getAge()}"> Age </span></td>
+            <td><a th:href="@{/edit}"> Редакти-ть </a> </td>
+<!--            <td> <button th:align="center" th:action="@{/{id}(id=${user.id})}" type="submit" th:method="post" > Удалить </button>   </td>-->
+            <td><a th:href="@{/deleteuser(id=${user.getId()})}" class="btn btn-danger"> Удалить </a> </td>
         </tr>
+
+
         </tbody>
     </table>
+    </form>
 </div>
+
 
 <p></p>
 <p></p>
@@ -66,6 +77,12 @@
 
 <p></p>
 
+
+<div class="container text-center">
+    <p th:text="'Юзер который зашел в модель ' + ${user.getUserName()} + ' ' + ${user.getUserSurname()} + ' ' + ${user.getAge()}" ></p>
+    <h3>User попавший под удаление </h3>
+
+</div>
 
 <!--<div>-->
 

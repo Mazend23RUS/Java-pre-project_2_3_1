@@ -7,8 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLException;
-import java.util.List;
+
 
 @Controller
 //@RestController
@@ -36,10 +35,11 @@ public class HelloController {
 
 //    @RequestMapping(value = "users/{userName}", method = RequestMethod.POST)
     @PostMapping("/adduser")
-    public String saveNewUser(@RequestParam String userName,
+    public String saveNewUser(
+                              @RequestParam String userName,
                               @RequestParam (required = false) String userSurname,
                               @RequestParam (required = false) Integer age, ModelMap model) {
-        User user = new User(userName, userSurname, age);
+        User user = new User( userName, userSurname, age);
 
         model.addAttribute("user", user);
         serviceUserInterface.addUser(user);
@@ -50,6 +50,14 @@ public class HelloController {
     @GetMapping("/adduser")
     public String savePage() {
         return "adduser";
+    }
+
+
+    @GetMapping("/deleteuser")
+//    @PostMapping("/deleteuser")
+    public String deleteUser( @RequestParam Long id, ModelMap model) {;
+        serviceUserInterface.deleteUser(id);
+        return "redirect:/";
     }
 
 //    @PostMapping("/")
