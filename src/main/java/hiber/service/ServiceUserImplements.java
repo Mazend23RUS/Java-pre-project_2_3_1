@@ -30,4 +30,15 @@ public class ServiceUserImplements implements ServiceUserInterface {
     }
     @Override
     public void deleteUser(Long id) { userInterface.deleteUser(id);}
+
+    @Override
+    public void updateUser(User user){
+        userInterface.updateUser(user);
+    }
+
+    @Override
+    public User getUserById(Long id){
+
+        return userInterface.getUserById(id);
+    }
 }

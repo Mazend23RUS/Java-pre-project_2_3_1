@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 
 @Controller
-//@RestController
-//@RequestMapping(value = "/", method = RequestMethod.GET)
 public class HelloController {
 
     @Autowired
@@ -24,16 +22,6 @@ public class HelloController {
         return "index";
     }
 
-
-//    @GetMapping(value = "calculator")
-//    public String printCalculator(@RequestParam (value = "a" ,required = false) int a,
-//                                  @RequestParam (value = "b", required = false) int b,
-//                                  @RequestParam (value = "action", required = false) String action,  Model model){
-//    model.addAttribute("calcul","Результат вычислений : " + a + action + b);
-//    return "calculator";
-//    }
-
-//    @RequestMapping(value = "users/{userName}", method = RequestMethod.POST)
     @PostMapping("/adduser")
     public String saveNewUser(
                               @RequestParam String userName,
@@ -60,23 +48,27 @@ public class HelloController {
         return "redirect:/";
     }
 
-//    @PostMapping("/")
-//    public String saveUser(@ModelAttribute("user"), ModelMap map){}
-//
-//    @GetMapping("/cars/{count}")
-//    public String indexId(@RequestParam("count") int count, Model model) {
-//        Car car = new Car();
-//        model.addAttribute("carResultPage", car.getListbyID(count));
-//        return "resultList";
-//    }
-//
-//    @GetMapping(value = "/quantityOfCars")
-//    public String getQuantityOfCars(Model model) {
-//        int quantityOfCars;
-//        Car car1 = new Car();
-//        quantityOfCars = car1.creatingListCars().size();
-//        model.addAttribute("quantity", quantityOfCars);
-//        return "quantityOfCars";
-//
-//    }
+
+    @PostMapping("/updateuser")
+    public String updateUser( @RequestParam (required = true) Long id,
+                              @RequestParam (required = false) String userName,
+                              @RequestParam (required = false) String userSurname,
+                              @RequestParam (required = false) Integer age, ModelMap model){
+        User user = serviceUserInterface.getUserById(id);
+        user.setUserName(userName);
+        user.setUserSurname(userSurname);
+        user.setAge(age);
+
+        serviceUserInterface.updateUser(user);
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/updateuser")
+    public String pageForUpdate( @RequestParam Long id, ModelMap model ) {
+
+        model.addAttribute("userForUpdate", serviceUserInterface.getUserById(id));
+        return "pageForUpdate";
+    }
+
 }

@@ -54,9 +54,8 @@
             <td><span th:text="${user.getUserName()}"> User  </span> </td>
             <td><span th:text="${user.getUserSurname()}"> Surname </span></td>
             <td><span th:text="${user.getAge()}"> Age </span></td>
-            <td><a th:href="@{/edit}"> Редакти-ть </a> </td>
-<!--            <td> <button th:align="center" th:action="@{/{id}(id=${user.id})}" type="submit" th:method="post" > Удалить </button>   </td>-->
-            <td><a th:href="@{/deleteuser(id=${user.getId()})}" class="btn btn-danger"> Удалить </a> </td>
+            <td><a th:href="@{/updateuser(id=${user.getId()})}" class="btn btn-primary" > Редакти-ть </a> </td>
+            <td><a th:href="@{/deleteuser(id=${user.getId()})}" class="btn btn-danger" > Удалить </a> </td>
         </tr>
 
 

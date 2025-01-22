@@ -16,5 +16,9 @@ public interface ServiceUserInterface {
 
     void deleteUser(Long id);
 
+    void updateUser(User user);
+
+    User getUserById(Long id);
+
 
 }
